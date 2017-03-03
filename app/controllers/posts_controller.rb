@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-	before_filter :authenticate_user!
+	before_action :authenticate_user!
 
   def index
     @posts = Post.all
@@ -12,8 +12,7 @@ class PostsController < ApplicationController
 
   def create
 
-    @post = Post.new(post_params)
-		@post.user_id= current_user.id
+    @post = current_user.posts.new(post_params)
     if @post.save
       redirect_to @post
     else
@@ -38,5 +37,6 @@ private
   def post_params
     params.require(:post).permit( :title, :body )
   end
+
 
 end

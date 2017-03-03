@@ -1,19 +1,25 @@
 <h1>Post show </h1>
-<p>
+  <p>
   <strong>Title:</strong>
   <%= @post.title %>
-</p>
+  </p>
 
-<p>
+  <p>
   <strong>Post:</strong>
   <%= @post.body %>
-</p>
+  </p>
+  <hr>
+  <p>Comments..</p>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <p><%= f.text_area :body %></p>
+  <p><%= f.submit %></p>
+<% end %>
 
-<p>Comments..</p>
-<% #= @post.comments.each %>
-<p>
-  <strong>user --name-- says:</strong>
-  <% #= @post.body %>
-</p>
-
+<% @post.comments.each do |comment| %>
+  <p>
+  <strong>user <%= comment.user %>--name-- says:</strong>
+  </p>
+  <p><%= comment.body %></p>
+  <hr>
+<% end %>
 <%= link_to 'Back', posts_path %>

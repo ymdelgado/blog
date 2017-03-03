@@ -1,6 +1,5 @@
 <h1>Post new </h1>
 <%= form_for :post, url: posts_path do |f| %>
-	<% @post.user_id= current_user.id %>
   <% if @post.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -25,7 +24,7 @@
     <%= f.text_area :body %>
   </p>
 	<p>
-    <%= f.submit %>
+<%= f.submit %>
     <%= link_to 'All posts', posts_path %>
   </p>
 <% end %>
