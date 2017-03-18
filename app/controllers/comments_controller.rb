@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
 
   attr_reader :parent_post
 
-	#def new
-    #@comment = Comment.new
-	#end
+  def new
+    @comment = Comment.new
+  end
 
   def create
 		@commentable = context
@@ -29,7 +29,7 @@ private
 	  	@parent_post = Post.find(params[:post_id])
       @parent_post
 		else
-			com= Comment.find(params[:commentable_id])
+			com= Comment.find(params[:comment_id])
       @parent_post = Post.find(com.post_id)
       com
 		end

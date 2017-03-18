@@ -20,8 +20,6 @@
   <p><strong><%= comment.user.email %></strong> says:</p>
   <p><%= comment.body %></p>
   <%= form_for [comment, Comment.new] do  |c| %>
-  <%= c.hidden_field :commentable_type %>
-  <%= c.hidden_field :commentable_id %>
   <p>reply... <%= c.text_field :body %></p>
   <p><%= c.submit %></p>
 <% end %>
