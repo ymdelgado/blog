@@ -1,0 +1,14 @@
+require './rails_helper'
+
+describe :user, type: :model do
+
+  context "user with valid params" do
+    it "should have email" do
+    end
+    it "should match with db record" do
+    end
+    it "can login" do
+    end
+end
+
+end
