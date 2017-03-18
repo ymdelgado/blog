@@ -1,25 +1,37 @@
 <h1>Post show </h1>
-  <p>
+<p>
   <strong>Title:</strong>
   <%= @post.title %>
-  </p>
+</p>
 
-  <p>
+<p>
   <strong>Post:</strong>
-  <%= @post.body %>
-  </p>
-  <hr>
-  <p>Comments..</p>
-<%= form_for([@post, @post.comments.build]) do |f| %>
+  <%= @post.body %> by. <%= @post.user.email %>
+</p>
+<hr>
+<p>Comments...</p>
+
+<%= form_for([@post, Comment.new]) do |f| %>
   <p><%= f.text_area :body %></p>
   <p><%= f.submit %></p>
 <% end %>
 
 <% @post.comments.each do |comment| %>
-  <p>
-  <strong>user <%= comment.user %>--name-- says:</strong>
-  </p>
+  <p><strong><%= comment.user.email %></strong> says:</p>
   <p><%= comment.body %></p>
-  <hr>
+  <%= form_for [comment, Comment.new] do  |c| %>
+  <%= c.hidden_field :commentable_type %>
+  <%= c.hidden_field :commentable_id %>
+  <p>reply... <%= c.text_field :body %></p>
+  <p><%= c.submit %></p>
+<% end %>
+
+<% comment.comments.each do |reply|%>
+<p>
+  <%= reply.user.email %> replies:
+  <%= reply.body %> post: <% reply.post_id %>
+</p>
+<% end %>
+<hr>
 <% end %>
 <%= link_to 'Back', posts_path %>

@@ -1,11 +1,13 @@
 class Comment < ApplicationRecord
 
-  belongs_to :post
+  validates :body, presence: true,
+            length: { minimum: 25  }
+
   belongs_to :user
+	belongs_to :post
 
-  #has_many :subcomments, class_name: "Comment",
-                        #foreign_key: "maincomment_id"
+  belongs_to :commentable, :polymorphic => true
 
-  #belongs_to :maincomment, class_name: "Comment"
+  has_many :comments, :as => :commentable
 
 end

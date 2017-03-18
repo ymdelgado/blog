@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  root 'welcome#index'
 
-  resources :posts do
-    resources :comments
+  root 'posts#index'
+
+  resources :posts, only: [:index, :new, :show, :create] do
+    resources :comments, only: [:create]
+  end
+
+  resources :comment, only: [:create] do
+    resources :comments, only: [:create, :new]
   end
 
   devise_for :users

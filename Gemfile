@@ -8,6 +8,7 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
+#gem 'rails', '~> 4.2', '>= 4.2.6'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
@@ -37,9 +38,24 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'devise'
 
+group :test do
+  gem 'webmock'
+  gem 'faker'
+  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
+  gem 'capybara'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+ gem 'rails-controller-testing'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'pry-rails', '~> 0.3.5'
+  gem 'guard-rspec'
+  gem 'spring-commands-rspec'
+  gem 'vcr'
 end
 
 group :development do
