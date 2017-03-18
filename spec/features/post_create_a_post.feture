@@ -1,0 +1,13 @@
+Feature: Blog let users to create a post
+
+  As a blog-user
+  I want to create a post
+
+  Scenario:
+    can see all posts
+    given my credentials to login
+    When I'm loggedin
+      Then I can create a post
+      And I can comment a post
+      And I can reply a comment
+
